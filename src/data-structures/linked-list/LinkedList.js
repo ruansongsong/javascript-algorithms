@@ -6,6 +6,7 @@ export default class LinkedList {
    * @param {Function} [comparatorFunction]
    */
   constructor(comparatorFunction) {
+    /** 初始化链表 head 指向表头，tail 指向表尾 */
     /** @var LinkedListNode */
     this.head = null;
 
@@ -18,13 +19,18 @@ export default class LinkedList {
   /**
    * @param {*} value
    * @return {LinkedList}
+   * 表头插入新元素
+   * 1. 创建一个新节点
+   * 2. 新节点的 next 执行 head
+   * 3. head 重新赋值为新节点
    */
   prepend(value) {
     // Make new node to be a head.
-    const newNode = new LinkedListNode(value, this.head);
+    const newNode = new LinkedListNode(value, this.head); // 在生成节点的同时完成next的指向
     this.head = newNode;
 
     // If there is no tail yet let's make new node a tail.
+    // 头尾相同的情况
     if (!this.tail) {
       this.tail = newNode;
     }
@@ -35,6 +41,10 @@ export default class LinkedList {
   /**
    * @param {*} value
    * @return {LinkedList}
+   * 表尾插入新元素
+   * 1. 创建一个新节点 newNode
+   * 2. tail 的 next 指向新节点
+   * 3. tail 赋值为 newNode
    */
   append(value) {
     const newNode = new LinkedListNode(value);
@@ -211,6 +221,7 @@ export default class LinkedList {
   /**
    * Reverse a linked list.
    * @returns {LinkedList}
+   * 翻转链表
    */
   reverse() {
     let currNode = this.head;
